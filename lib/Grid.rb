@@ -2,6 +2,7 @@ require 'Location'
 
 class Grid
 
+  #this getter method is defined for testing only
   attr_reader :size
 
   def initialize(size)
