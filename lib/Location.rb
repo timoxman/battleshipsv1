@@ -1,5 +1,7 @@
 class Location
 
+# the grid will be an array of locations. The class Location is used to control the 'state' of a particular location.
+
 def initialize
   # @positionX
   # @positionY

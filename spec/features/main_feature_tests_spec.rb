@@ -8,21 +8,21 @@ require 'Ship'
 # So that I can prepare for the game
 # I would like to place a ship in a board location
 feature 'the game is initialised' do
-  scenario 'the board is set up and a ship is placed on the grid' do
+  scenario 'the board is set up and a ship is placed on the grid (F1)' do
     grid1 = Grid.new(3)
-    location1 = Location.new
+    #location1 = Location.new
     ship1 = Ship.new(2)
-    grid1.place_ship(ship1,location1,"H")
+    grid1.place_ship(ship1,1,"H")
     expect(ship1).to be_floating
   end
 
 #so that the user can play the game the user should be able to see a representation of the grid on the screen depending on the size the user wants.
-  scenario 'the 1*1 board is set up and displayed to the user' do
+  scenario 'the 1*1 board is set up and displayed to the user(F2)' do
     grid1 = Grid.new(1)
     expect(grid1.to_s).to eq "| N |\n"
   end
 
-  scenario 'the 2*2 board is set up and displayed to the user' do
+  scenario 'the 2*2 board is set up and displayed to the user(F3)' do
     grid1 = Grid.new(2)
     expect(grid1.to_s).to eq "| N | N |\n| N | N |\n"
   end
@@ -30,7 +30,7 @@ feature 'the game is initialised' do
 # As a player
 # So that I can play a more interesting game
 # I would like to have a range of ship sizes to choose from
-  scenario 'ships can be created of length 2,4 5 units' do
+  scenario 'ships can be created of length 2,4 5 units(F4)' do
     #I have no matching unit tests for this feature test, not sure what this should be - this feature test looks like several unit tests
     ship1 = Ship.new(2)
     ship2 = Ship.new(4)
@@ -48,7 +48,14 @@ feature 'the game is initialised' do
 # As a player
 # So that I can have a coherent game
 # I would like ships to be constrained to be on the board
-
+  scenario 'a ship must be placed on the board(F5)' do
+    grid1 = Grid.new(3)
+    #location1 = Location.new
+    ship1 = Ship.new(2)
+    #place a ship at position 1 - its NW corner is at this position
+    expect {grid1.place_ship(ship1,1,"H")}.not_to raise_error
+    expect {grid1.place_ship(ship1,9,"H")}.to raise_error "Ship is off the board"
+  end
 
 
 end
